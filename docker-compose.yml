@@ -1,0 +1,23 @@
+services:
+  app:
+    build:
+      context: .
+      target: dev
+    ports:
+      # Host port defaults to 5174 if something else (e.g. local Vite) already uses 5173.
+      - "${DEV_PORT:-5174}:5173"
+    environment:
+      # You can put these in a local `.env.local` too; compose will pass them through if you set them.
+      - VITE_BASE44_APP_ID=${VITE_BASE44_APP_ID:-}
+      - VITE_BASE44_APP_BASE_URL=${VITE_BASE44_APP_BASE_URL:-}
+    volumes:
+      - .:/app
+      - /app/node_modules
+
+  web:
+    profiles: ["prod"]
+    build:
+      context: .
+      target: prod
+    ports:
+      - "8080:80"
