@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useRef, useLayoutEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import MenuCategory from "../components/chinas/MenuCategory";
 import PageHeader from "../components/chinas/PageHeader";
@@ -6,6 +6,22 @@ import menuEn from "../locales/en/menu.json";
 import menuEs from "../locales/es/menu.json";
 
 const menusByLang = { en: menuEn, es: menuEs };
+
+/** Sticky tab `top` = offset below fixed site nav (nav is z-40; tabs stay z-30 so nav stays visible). */
+const STICKY_TOP_REM_MOBILE = 4;
+const STICKY_TOP_REM_DESKTOP = 5;
+
+let safeAreaTopPxCache;
+function getSafeAreaTopPx() {
+  if (typeof window === 'undefined') return 0;
+  if (safeAreaTopPxCache != null) return safeAreaTopPxCache;
+  const el = document.createElement('div');
+  el.style.cssText = 'position:absolute;visibility:hidden;padding-top:env(safe-area-inset-top,0px)';
+  document.body.appendChild(el);
+  safeAreaTopPxCache = parseFloat(getComputedStyle(el).paddingTop) || 0;
+  el.remove();
+  return safeAreaTopPxCache;
+}
 
 const TAB_DEFS = [
   { key: "food", categories: ["antojitos_botanas", "antojitos_alitas", "callejeros_tacos", "callejeros_tortas", "callejeros_burritos", "originales", "sides_sopas", "sides_guarniciones", "postres"] },
@@ -16,8 +32,30 @@ const TAB_DEFS = [
 export default function Menu() {
   const { t, i18n } = useTranslation();
   const [activeTab, setActiveTab] = useState("food");
+  const tabsStripRef = useRef(null);
+  const tabBodyRef = useRef(null);
+  const skipScrollReset = useRef(true);
 
   const menuData = menusByLang[i18n.language] || menusByLang.en;
+
+  useLayoutEffect(() => {
+    if (skipScrollReset.current) {
+      skipScrollReset.current = false;
+      return;
+    }
+    const tabsEl = tabsStripRef.current;
+    const bodyEl = tabBodyRef.current;
+    if (!tabsEl || !bodyEl) return;
+
+    const rem = parseFloat(getComputedStyle(document.documentElement).fontSize) || 16;
+    const isMdUp = window.matchMedia('(min-width: 768px)').matches;
+    const stickyRem = isMdUp ? STICKY_TOP_REM_DESKTOP : STICKY_TOP_REM_MOBILE;
+    const stickyTopPx = stickyRem * rem + getSafeAreaTopPx();
+    const tabStripH = tabsEl.offsetHeight;
+    const bodyTop = bodyEl.getBoundingClientRect().top + window.scrollY;
+    const y = bodyTop - stickyTopPx - tabStripH;
+    window.scrollTo({ top: Math.max(0, y), behavior: 'auto' });
+  }, [activeTab]);
 
   const tabs = useMemo(
     () =>
@@ -50,7 +88,11 @@ export default function Menu() {
         <p className="text-white/70">{t('menuPage.heroSubtitle')}</p>
       </PageHeader>
 
-      <div className="sticky top-0 z-30 bg-white border-b shadow-sm">
+      {/* Opaque bg only: backdrop-blur + translucency repaint every scroll frame and jitter on mobile */}
+      <div
+        ref={tabsStripRef}
+        className="sticky top-[calc(4rem+env(safe-area-inset-top,0px))] z-30 border-b border-gray-200 bg-white shadow-sm md:top-[calc(5rem+env(safe-area-inset-top,0px))]"
+      >
         <div className="max-w-4xl mx-auto flex">
           {tabs.map((tab) => (
             <button
@@ -69,7 +111,7 @@ export default function Menu() {
         </div>
       </div>
 
-      <div className="max-w-4xl mx-auto px-6 pt-8">
+      <div ref={tabBodyRef} className="max-w-4xl mx-auto px-6 pt-8">
         <div className="flex flex-wrap items-center gap-4 text-sm text-gray-500 mb-2">
           <span>{t('menuPage.legendVeg')}</span>
           <span>{t('menuPage.legendSpicy')}</span>
