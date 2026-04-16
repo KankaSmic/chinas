@@ -48,6 +48,8 @@ export default function Gallery() {
                 src={photo.url}
                 alt={photo.caption}
                 className="w-full rounded-2xl transition-transform duration-500 group-hover:scale-105"
+                loading="lazy"
+                decoding="async"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4 rounded-2xl">
                 <p className="text-white text-sm font-medium">{photo.caption}</p>
@@ -73,6 +75,8 @@ export default function Gallery() {
             src={selected.url}
             alt={selected.caption}
             className="max-w-full max-h-[85vh] rounded-2xl object-contain"
+            loading="eager"
+            decoding="async"
             onClick={(e) => e.stopPropagation()}
           />
           <p className="absolute bottom-8 text-white text-lg font-medium">{selected.caption}</p>

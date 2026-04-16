@@ -36,7 +36,13 @@ export default function Menu() {
         className="bg-gray-900 text-white"
         decorations={
           <div className="absolute inset-0 opacity-20 pointer-events-none">
-            <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1920&q=60" alt="" className="w-full h-full object-cover" />
+            <img
+              src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1920&q=60"
+              alt=""
+              className="w-full h-full object-cover"
+              fetchPriority="high"
+              decoding="async"
+            />
           </div>
         }
       >

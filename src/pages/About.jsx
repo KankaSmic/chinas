@@ -41,6 +41,8 @@ export default function About() {
                 src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&q=80"
                 alt={t('about.storyImgAlt')}
                 className="rounded-3xl shadow-2xl w-full"
+                loading="lazy"
+                decoding="async"
               />
             </div>
             <div>

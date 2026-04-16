@@ -16,6 +16,8 @@ export default function HeroSection() {
           src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=1920&q=80"
           alt={t('hero.imgAlt')}
           className="w-full h-full object-cover"
+          fetchPriority="high"
+          decoding="async"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/60" />
       </div>
