@@ -1,5 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import LazyImg from './LazyImg';
 
 const photos = [
   { url: "https://images.unsplash.com/photo-1599974579688-8dbdd335c77f?w=600&q=80", altKey: "alt0" },
@@ -32,12 +33,10 @@ export default function PhotoGrid() {
                 i === 0 ? 'md:row-span-2' : ''
               }`}
             >
-              <img
+              <LazyImg
                 src={photo.url}
                 alt={t(`photoGrid.${photo.altKey}`)}
                 className="w-full h-full object-cover min-h-[200px] md:min-h-[250px] transition-transform duration-500 group-hover:scale-110"
-                loading="lazy"
-                decoding="async"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </div>

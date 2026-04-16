@@ -2,6 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { X } from "lucide-react";
 import PageHeader from "../components/chinas/PageHeader";
+import LazyImg from "../components/chinas/LazyImg";
 
 const photoUrls = [
   "https://images.unsplash.com/photo-1599974579688-8dbdd335c77f?w=800&q=80",
@@ -44,12 +45,10 @@ export default function Gallery() {
               className="break-inside-avoid cursor-pointer group relative overflow-hidden rounded-2xl"
               onClick={() => setSelected(photo)}
             >
-              <img
+              <LazyImg
                 src={photo.url}
                 alt={photo.caption}
                 className="w-full rounded-2xl transition-transform duration-500 group-hover:scale-105"
-                loading="lazy"
-                decoding="async"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4 rounded-2xl">
                 <p className="text-white text-sm font-medium">{photo.caption}</p>

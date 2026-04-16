@@ -2,6 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Heart, Globe, Utensils, Rainbow } from "lucide-react";
 import PageHeader from "../components/chinas/PageHeader";
+import LazyImg from "../components/chinas/LazyImg";
 
 const values = [
   { icon: Heart, titleKey: "about.valueFamilyTitle", textKey: "about.valueFamilyText", color: "#FF6B6B" },
@@ -37,12 +38,10 @@ export default function About() {
         <div className="max-w-5xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center mb-20">
             <div>
-              <img
+              <LazyImg
                 src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&q=80"
                 alt={t('about.storyImgAlt')}
                 className="rounded-3xl shadow-2xl w-full"
-                loading="lazy"
-                decoding="async"
               />
             </div>
             <div>
