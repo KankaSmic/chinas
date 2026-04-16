@@ -1,34 +1,40 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 import { X } from "lucide-react";
+import PageHeader from "../components/chinas/PageHeader";
 
-const photos = [
-  { url: "https://images.unsplash.com/photo-1599974579688-8dbdd335c77f?w=800&q=80", caption: "Fresh street tacos" },
-  { url: "https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?w=800&q=80", caption: "Loaded nachos" },
-  { url: "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?w=800&q=80", caption: "Tropical cocktails" },
-  { url: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=800&q=80", caption: "Signature burrito" },
-  { url: "https://images.unsplash.com/photo-1560717789-0ac7c58ac90a?w=800&q=80", caption: "Our patio vibes" },
-  { url: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80", caption: "Plating perfection" },
-  { url: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&q=80", caption: "Evening ambiance" },
-  { url: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80", caption: "Fine details" },
-  { url: "https://images.unsplash.com/photo-1482049016688-2d3e1b311543?w=800&q=80", caption: "Colorful dishes" },
-  { url: "https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=800&q=80", caption: "Fresh ingredients" },
-  { url: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&q=80", caption: "Healthy & vibrant" },
-  { url: "https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=800&q=80", caption: "Cocktail hour" },
+const photoUrls = [
+  "https://images.unsplash.com/photo-1599974579688-8dbdd335c77f?w=800&q=80",
+  "https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?w=800&q=80",
+  "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?w=800&q=80",
+  "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=800&q=80",
+  "https://images.unsplash.com/photo-1560717789-0ac7c58ac90a?w=800&q=80",
+  "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80",
+  "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&q=80",
+  "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80",
+  "https://images.unsplash.com/photo-1482049016688-2d3e1b311543?w=800&q=80",
+  "https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=800&q=80",
+  "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&q=80",
+  "https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=800&q=80",
 ];
 
 export default function Gallery() {
+  const { t, i18n } = useTranslation();
   const [selected, setSelected] = useState(null);
+
+  const photos = useMemo(
+    () => photoUrls.map((url, i) => ({ url, caption: t(`gallery.cap${i}`) })),
+    [t, i18n.language]
+  );
 
   return (
     <div className="min-h-screen">
-      {/* Hero */}
-      <section className="relative py-24 px-6 overflow-hidden"
-        style={{ background: 'linear-gradient(135deg, #E91E63 0%, #FF6B6B 50%, #FF9A56 100%)' }}>
-        <div className="relative max-w-3xl mx-auto text-center text-white">
-          <h1 className="text-4xl md:text-6xl font-black mb-3">Galería</h1>
-          <p className="text-white/80">Gallery</p>
-        </div>
-      </section>
+      <PageHeader
+        sectionStyle={{ background: 'linear-gradient(135deg, #E91E63 0%, #FF6B6B 50%, #FF9A56 100%)' }}
+      >
+        <h1 className="text-4xl md:text-6xl font-black mb-3">{t('gallery.title')}</h1>
+        <p className="text-white/80">{t('gallery.subtitle')}</p>
+      </PageHeader>
 
       <div className="max-w-6xl mx-auto px-6 py-16">
         <div className="columns-2 md:columns-3 gap-4 space-y-4">
@@ -51,13 +57,13 @@ export default function Gallery() {
         </div>
       </div>
 
-      {/* Lightbox */}
       {selected && (
-        <div 
+        <div
           className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-6"
           onClick={() => setSelected(null)}
         >
-          <button 
+          <button
+            type="button"
             className="absolute top-6 right-6 text-white/80 hover:text-white transition-colors"
             onClick={() => setSelected(null)}
           >

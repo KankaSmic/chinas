@@ -1,0 +1,476 @@
+{
+  "antojitos_botanas": {
+    "title": "ANTOJITOS — Botanas",
+    "subtitle": "Entradas / Botanas",
+    "color": "#FF6B6B",
+    "items": [
+      {
+        "name": "Nachos Clásicos",
+        "nameEn": "Classic Nachos",
+        "description": "Chips, queso fundido, frijoles, pico de gallo, jalapeños, crema",
+        "price": "425 DOP"
+      },
+      {
+        "name": "Gajos Fundidos",
+        "nameEn": "Loaded Potato Wedges",
+        "description": "Potato wedges with melted cheese, bacon bits, sour cream",
+        "price": "375 DOP"
+      },
+      {
+        "name": "Sopes",
+        "description": "Handmade masa cups with beans, lettuce, queso fresco, salsa",
+        "price": "350 DOP",
+        "tags": [
+          "🥕"
+        ]
+      },
+      {
+        "name": "Quesadilla",
+        "description": "Flour tortilla with melted cheese, choice of filling",
+        "price": "375 DOP"
+      }
+    ]
+  },
+  "antojitos_alitas": {
+    "title": "ANTOJITOS — Alitas",
+    "subtitle": "Alitas",
+    "color": "#FF6B6B",
+    "items": [
+      {
+        "name": "Alitas (6 pcs)",
+        "nameEn": "Wings",
+        "description": "Choose your flavor",
+        "price": "425 DOP",
+        "variants": [
+          "BBQ",
+          "Buffalo 🔥",
+          "Chimichurri",
+          "Jerk 🔥",
+          "Piri-Piri 🔥",
+          "Teriyaki"
+        ]
+      }
+    ]
+  },
+  "callejeros_tacos": {
+    "title": "CALLEJEROS — Tacos y Tostadas",
+    "subtitle": "Comida callejera / Tacos y tostadas",
+    "color": "#FF9A56",
+    "items": [
+      {
+        "name": "Taco Istmeño",
+        "description": "Traditional Oaxacan-style taco with slow-cooked meats",
+        "price": "275 DOP"
+      },
+      {
+        "name": "Taco Doña Carmen",
+        "description": "Homestyle taco inspired by grandma's kitchen",
+        "price": "275 DOP"
+      },
+      {
+        "name": "Tostada Costeña",
+        "description": "Crispy tostada with coastal-inspired fresh toppings",
+        "price": "325 DOP"
+      },
+      {
+        "name": "Tostada Mozambiqueña",
+        "description": "African-spiced tostada with piri-piri flavors",
+        "price": "325 DOP",
+        "tags": [
+          "🔥"
+        ]
+      }
+    ]
+  },
+  "callejeros_tortas": {
+    "title": "CALLEJEROS — Tortas",
+    "subtitle": "Tortas mexicanas",
+    "color": "#FF9A56",
+    "items": [
+      {
+        "name": "Torta Gringa",
+        "description": "Flour tortilla quesadilla-style with al pastor",
+        "price": "425 DOP"
+      },
+      {
+        "name": "Torta Chilanga",
+        "description": "Mexico City-style loaded sandwich",
+        "price": "450 DOP"
+      },
+      {
+        "name": "Torta Hawaiana",
+        "description": "With grilled pineapple and ham",
+        "price": "425 DOP"
+      }
+    ]
+  },
+  "callejeros_burritos": {
+    "title": "CALLEJEROS — Burritos",
+    "subtitle": "Burritos",
+    "color": "#FF9A56",
+    "items": [
+      {
+        "name": "Burrito Americano",
+        "description": "Loaded burrito, American-style with rice, beans, cheese, sour cream",
+        "price": "475 DOP"
+      },
+      {
+        "name": "Burrito Central",
+        "description": "Central Mexican-style with traditional fillings",
+        "price": "450 DOP"
+      },
+      {
+        "name": "Burrito Caribeño",
+        "description": "Caribbean twist with tropical flavors and plantain",
+        "price": "475 DOP"
+      }
+    ]
+  },
+  "originales": {
+    "title": "CHIÑAS ORIGINALES",
+    "subtitle": "Platos insignia",
+    "color": "#00BCD4",
+    "items": [
+      {
+        "name": "Enchiladas Juchitecas",
+        "description": "Traditional Oaxacan enchiladas with rich mole sauce",
+        "price": "525 DOP"
+      },
+      {
+        "name": "Cerdo Ranchero",
+        "nameEn": "Ranch-Style Pork",
+        "description": "Slow-cooked pork in ranchero salsa with rice and beans",
+        "price": "550 DOP"
+      },
+      {
+        "name": "Tokyo Bowl",
+        "description": "Japanese-inspired bowl with teriyaki, edamame, and pickled ginger",
+        "price": "525 DOP"
+      },
+      {
+        "name": "British Fish & Chips",
+        "description": "Beer-battered fish with crispy chips and tartar sauce",
+        "price": "575 DOP"
+      },
+      {
+        "name": "Milanesa Argentina",
+        "description": "Breaded cutlet Argentine-style with chimichurri",
+        "price": "525 DOP"
+      },
+      {
+        "name": "Jamaican Jerk Chops",
+        "description": "Jerk-spiced pork chops with Caribbean coleslaw",
+        "price": "575 DOP",
+        "tags": [
+          "🔥"
+        ]
+      },
+      {
+        "name": "Camarones Acapulqueños",
+        "nameEn": "Acapulco-Style Shrimp",
+        "description": "Garlic butter shrimp Acapulco-style",
+        "price": "625 DOP"
+      }
+    ]
+  },
+  "sides_sopas": {
+    "title": "ACOMPAÑAMIENTOS — Sopas",
+    "subtitle": "Guarniciones / Sopas",
+    "color": "#8BC34A",
+    "items": [
+      {
+        "name": "Caldo Casero",
+        "nameEn": "Homestyle Broth",
+        "description": "Traditional Mexican chicken broth with vegetables",
+        "price": "275 DOP"
+      },
+      {
+        "name": "Cowboy Chili",
+        "description": "Hearty beef and bean chili, Texas-style",
+        "price": "325 DOP",
+        "tags": [
+          "🔥"
+        ]
+      }
+    ]
+  },
+  "sides_guarniciones": {
+    "title": "ACOMPAÑAMIENTOS — Guarniciones",
+    "subtitle": "Guarniciones",
+    "color": "#8BC34A",
+    "items": [
+      {
+        "name": "Chips & Salsa",
+        "description": "Tortilla chips with house-made salsa",
+        "price": "175 DOP",
+        "tags": [
+          "🥕"
+        ]
+      },
+      {
+        "name": "Chips & Guacamole",
+        "description": "Tortilla chips with fresh guacamole",
+        "price": "225 DOP",
+        "tags": [
+          "🥕"
+        ]
+      },
+      {
+        "name": "Vegetales Asados",
+        "nameEn": "Grilled Vegetables",
+        "price": "200 DOP",
+        "tags": [
+          "🥕"
+        ]
+      },
+      {
+        "name": "Esquites",
+        "description": "Mexican street corn in a cup with mayo, chili, lime",
+        "price": "200 DOP",
+        "tags": [
+          "🥕"
+        ]
+      },
+      {
+        "name": "Gajos de Papa",
+        "nameEn": "Potato Wedges",
+        "price": "175 DOP",
+        "tags": [
+          "🥕"
+        ]
+      },
+      {
+        "name": "Aros de Cebolla",
+        "nameEn": "Onion Rings",
+        "price": "200 DOP",
+        "tags": [
+          "🥕"
+        ]
+      }
+    ]
+  },
+  "postres": {
+    "title": "POSTRES",
+    "subtitle": "Postres",
+    "color": "#E91E63",
+    "items": [
+      {
+        "name": "Crispitos",
+        "description": "Crispy cinnamon sugar tortilla rolls with chocolate or caramel dip",
+        "price": "225 DOP"
+      },
+      {
+        "name": "Helado Frito",
+        "nameEn": "Fried Ice Cream",
+        "description": "Crispy coated ice cream with honey and cinnamon",
+        "price": "275 DOP"
+      },
+      {
+        "name": "Plátanos Playeros",
+        "nameEn": "Beach-Style Plantains",
+        "description": "Sweet plantains with cream and cinnamon",
+        "price": "225 DOP"
+      }
+    ]
+  },
+  "bebidas": {
+    "title": "BEBIDAS — Refrescantes",
+    "subtitle": "Bebidas / Frescas y embotelladas",
+    "color": "#00BCD4",
+    "items": [
+      {
+        "name": "Agua de Chinola",
+        "nameEn": "Passion Fruit Cooler",
+        "price": "150 DOP"
+      },
+      {
+        "name": "Tropical Cooler",
+        "description": "Pineapple, mango, and coconut blend",
+        "price": "175 DOP"
+      },
+      {
+        "name": "Hibiscus Cooler",
+        "description": "Jamaica flower water, refreshing and tangy",
+        "price": "150 DOP"
+      },
+      {
+        "name": "Water / Sodas / Ginger Ale",
+        "price": "100–150 DOP"
+      }
+    ]
+  },
+  "bar_cerveza": {
+    "title": "DE LA BARRA — Cerveza",
+    "subtitle": "De la barra / Cerveza",
+    "color": "#FFD93D",
+    "items": [
+      {
+        "name": "Cerveza Nacional",
+        "nameEn": "Local Beer",
+        "description": "Presidente, Bohemia",
+        "price": "175 DOP"
+      },
+      {
+        "name": "Cerveza Importada",
+        "nameEn": "Imported Beer",
+        "description": "Corona, Modelo, Heineken",
+        "price": "250 DOP"
+      }
+    ]
+  },
+  "bar_vino": {
+    "title": "DE LA BARRA — Vino",
+    "subtitle": "Cócteles con vino",
+    "color": "#E91E63",
+    "items": [
+      {
+        "name": "Aperol Spritz",
+        "price": "425 DOP"
+      },
+      {
+        "name": "Mimosa",
+        "price": "350 DOP"
+      },
+      {
+        "name": "Sangría",
+        "description": "House red wine sangria with fresh fruits",
+        "price": "375 DOP"
+      },
+      {
+        "name": "Tinto de Verano",
+        "description": "Red wine with lemon soda",
+        "price": "325 DOP"
+      }
+    ]
+  },
+  "bar_tequila": {
+    "title": "DE LA BARRA — Tequila",
+    "subtitle": "Cócteles de tequila",
+    "color": "#8BC34A",
+    "items": [
+      {
+        "name": "Margarita Clásica",
+        "price": "400 DOP"
+      },
+      {
+        "name": "Margarita de Sabor",
+        "description": "Mango, strawberry, or tamarind",
+        "price": "425 DOP"
+      },
+      {
+        "name": "Coronarita",
+        "description": "Margarita topped with an inverted Corona",
+        "price": "475 DOP"
+      },
+      {
+        "name": "Paloma",
+        "description": "Tequila, grapefruit soda, lime",
+        "price": "375 DOP"
+      },
+      {
+        "name": "Tequila Sunrise",
+        "price": "375 DOP"
+      }
+    ]
+  },
+  "bar_vodka": {
+    "title": "DE LA BARRA — Vodka",
+    "subtitle": "Cócteles de vodka",
+    "color": "#00BCD4",
+    "items": [
+      {
+        "name": "Moscow Mule",
+        "price": "400 DOP"
+      },
+      {
+        "name": "Cosmopolitan",
+        "price": "425 DOP"
+      },
+      {
+        "name": "Bloody Mary",
+        "price": "400 DOP",
+        "tags": [
+          "🔥"
+        ]
+      },
+      {
+        "name": "Vodka Lemonade",
+        "price": "350 DOP"
+      }
+    ]
+  },
+  "bar_gin": {
+    "title": "DE LA BARRA — Gin",
+    "subtitle": "Cócteles de ginebra",
+    "color": "#7B1FA2",
+    "items": [
+      {
+        "name": "Gin & Tonic",
+        "price": "375 DOP"
+      },
+      {
+        "name": "Martini",
+        "price": "425 DOP"
+      },
+      {
+        "name": "Negroni",
+        "price": "425 DOP"
+      },
+      {
+        "name": "Tom Collins",
+        "price": "375 DOP"
+      }
+    ]
+  },
+  "bar_rum": {
+    "title": "DE LA BARRA — Ron / Rum",
+    "subtitle": "Cócteles de ron",
+    "color": "#FF9A56",
+    "items": [
+      {
+        "name": "Mojito Clásico",
+        "price": "375 DOP"
+      },
+      {
+        "name": "Mojito de Sabor",
+        "description": "Mango, passion fruit, or strawberry",
+        "price": "400 DOP"
+      },
+      {
+        "name": "Piña Colada",
+        "price": "400 DOP"
+      },
+      {
+        "name": "Mai Tai",
+        "price": "425 DOP"
+      },
+      {
+        "name": "Cuba Libre",
+        "price": "325 DOP"
+      }
+    ]
+  },
+  "bar_whiskey": {
+    "title": "DE LA BARRA — Whiskey",
+    "subtitle": "Cócteles de whiskey",
+    "color": "#795548",
+    "items": [
+      {
+        "name": "Old Fashioned",
+        "price": "450 DOP"
+      },
+      {
+        "name": "Whiskey Sour",
+        "price": "425 DOP"
+      },
+      {
+        "name": "Manhattan",
+        "price": "450 DOP"
+      },
+      {
+        "name": "Irish Coffee",
+        "price": "400 DOP"
+      }
+    ]
+  }
+}

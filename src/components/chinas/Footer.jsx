@@ -1,7 +1,11 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Facebook, Instagram, MessageCircle, Heart } from "lucide-react";
 
 export default function Footer() {
+  const { t } = useTranslation();
+  const year = new Date().getFullYear();
+
   return (
     <footer className="bg-gray-900 text-white">
       {/* Rainbow stripe */}
@@ -20,24 +24,24 @@ export default function Footer() {
           <div>
             <h3 className="text-2xl font-black mb-2">CHIÑAS</h3>
             <p className="text-gray-400 text-sm leading-relaxed">
-              Mexican Roots. Global Vibes.<br/>
-              Proudly the first LGBTQ+ bar & restaurant in Las Terrenas 🏳️‍🌈
+              {t('footer.tagline')}<br />
+              {t('footer.prideLine')}
             </p>
           </div>
 
           {/* Hours */}
           <div>
-            <h4 className="font-bold mb-3 text-white/90">Hours</h4>
+            <h4 className="font-bold mb-3 text-white/90">{t('footer.hoursTitle')}</h4>
             <div className="text-gray-400 text-sm space-y-1">
-              <p>Monday: <span className="text-red-400">CLOSED</span></p>
-              <p>Tue – Sat: 12:00 PM – 10:30 PM</p>
-              <p>Sunday: 12:00 PM – 4:00 PM</p>
+              <p>{t('footer.hoursMon')} <span className="text-red-400">{t('footer.hoursClosed')}</span></p>
+              <p>{t('footer.hoursTueSat')}</p>
+              <p>{t('footer.hoursSun')}</p>
             </div>
           </div>
 
           {/* Social */}
           <div>
-            <h4 className="font-bold mb-3 text-white/90">Connect</h4>
+            <h4 className="font-bold mb-3 text-white/90">{t('footer.connectTitle')}</h4>
             <div className="flex gap-3">
               <a href="https://www.instagram.com/misfloresmexicanas" target="_blank" rel="noopener noreferrer"
                 className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors">
@@ -53,14 +57,14 @@ export default function Footer() {
               </a>
             </div>
             <p className="text-gray-500 text-xs mt-4">
-              Located in front of Pueblo de los Pescadores, Las Terrenas, DR
+              {t('footer.addressLine')}
             </p>
           </div>
         </div>
 
         <div className="border-t border-white/10 mt-10 pt-6 text-center">
-          <p className="text-gray-500 text-xs flex items-center justify-center gap-1">
-            Made with <Heart className="w-3 h-3 text-red-500 fill-red-500" /> CHIÑAS Restaurante © {new Date().getFullYear()}
+          <p className="text-gray-500 text-xs flex items-center justify-center gap-1 flex-wrap">
+            {t('footer.madeWith')} <Heart className="w-3 h-3 text-red-500 fill-red-500 shrink-0" /> {t('footer.copyright', { year })}
           </p>
         </div>
       </div>

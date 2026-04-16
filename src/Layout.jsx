@@ -1,35 +1,53 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
 import { createPageUrl } from "@/utils";
 import { Menu, X, Instagram, Facebook, MessageCircle } from "lucide-react";
 import Footer from "./components/chinas/Footer";
 import SocialBar from "./components/chinas/SocialBar";
+import LanguageSwitcher from "./components/chinas/LanguageSwitcher";
+
+const NAV_SOLID_AFTER_PX = 400;
 
 const navLinks = [
-  { name: "Home", page: "Home" },
-  { name: "About", page: "About" },
-  { name: "Menu", page: "Menu" },
-  { name: "Gallery", page: "Gallery" },
-  { name: "Location", page: "Location" },
-  { name: "Contact", page: "Contact" },
+  { page: "Home", i18nKey: "home" },
+  { page: "About", i18nKey: "about" },
+  { page: "Menu", i18nKey: "menu" },
+  { page: "Gallery", i18nKey: "gallery" },
+  { page: "Location", i18nKey: "location" },
+  { page: "Contact", i18nKey: "contact" },
 ];
 
 export default function Layout({ children, currentPageName }) {
+  const { t } = useTranslation();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [scrolledPastNav, setScrolledPastNav] = useState(
+    () => typeof window !== 'undefined' && window.scrollY >= NAV_SOLID_AFTER_PX
+  );
   const isHome = currentPageName === "Home";
+  const transparentNav = isHome && !scrolledPastNav;
+
+  useEffect(() => {
+    const onScroll = () => {
+      setScrolledPastNav(window.scrollY >= NAV_SOLID_AFTER_PX);
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   return (
     <div className="min-h-screen flex flex-col">
       {/* Navbar */}
       <nav className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
-        isHome ? 'bg-transparent' : 'bg-white shadow-sm'
+        transparentNav ? 'bg-transparent' : 'bg-white shadow-sm'
       }`}
-        style={isHome ? {} : { backdropFilter: 'blur(12px)' }}
+        style={transparentNav ? {} : { backdropFilter: 'blur(12px)' }}
       >
         <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
           {/* Logo */}
           <Link to={createPageUrl("Home")} className="flex items-center gap-2">
-            <span className={`text-2xl font-black tracking-tight ${isHome ? 'text-white' : 'text-gray-900'}`}>
+            <span className={`text-2xl font-black tracking-tight ${transparentNav ? 'text-white' : 'text-gray-900'}`}>
               CHIÑAS
             </span>
             <span className="text-xs">🌮</span>
@@ -43,40 +61,44 @@ export default function Layout({ children, currentPageName }) {
                 to={createPageUrl(link.page)}
                 className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
                   currentPageName === link.page
-                    ? (isHome ? 'bg-white/20 text-white' : 'bg-gray-100 text-gray-900')
-                    : (isHome ? 'text-white/80 hover:text-white hover:bg-white/10' : 'text-gray-500 hover:text-gray-900 hover:bg-gray-50')
+                    ? (transparentNav ? 'bg-white/20 text-white' : 'bg-gray-100 text-gray-900')
+                    : (transparentNav ? 'text-white/80 hover:text-white hover:bg-white/10' : 'text-gray-500 hover:text-gray-900 hover:bg-gray-50')
                 }`}
               >
-                {link.name}
+                {t(`nav.${link.i18nKey}`)}
               </Link>
             ))}
           </div>
 
           {/* Social icons desktop */}
           <div className="hidden md:flex items-center gap-2">
+            <LanguageSwitcher inverse={transparentNav} />
             <a href="https://www.instagram.com/misfloresmexicanas" target="_blank" rel="noopener noreferrer"
               className={`w-9 h-9 rounded-full flex items-center justify-center transition-colors ${
-                isHome ? 'text-white/80 hover:bg-white/10' : 'text-gray-400 hover:bg-gray-100'
+                transparentNav ? 'text-white/80 hover:bg-white/10' : 'text-gray-400 hover:bg-gray-100'
               }`}>
               <Instagram className="w-4 h-4" />
             </a>
             <a href="#" target="_blank" rel="noopener noreferrer"
               className={`w-9 h-9 rounded-full flex items-center justify-center transition-colors ${
-                isHome ? 'text-white/80 hover:bg-white/10' : 'text-gray-400 hover:bg-gray-100'
+                transparentNav ? 'text-white/80 hover:bg-white/10' : 'text-gray-400 hover:bg-gray-100'
               }`}>
               <Facebook className="w-4 h-4" />
             </a>
           </div>
 
-          {/* Mobile toggle */}
-          <button
-            className={`md:hidden w-10 h-10 rounded-full flex items-center justify-center ${
-              isHome ? 'text-white hover:bg-white/10' : 'text-gray-900 hover:bg-gray-100'
-            }`}
-            onClick={() => setMobileOpen(!mobileOpen)}
-          >
-            {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-          </button>
+          {/* Mobile: language + menu */}
+          <div className="md:hidden flex items-center gap-2">
+            <LanguageSwitcher inverse={transparentNav} />
+            <button
+              className={`w-10 h-10 rounded-full flex items-center justify-center ${
+                transparentNav ? 'text-white hover:bg-white/10' : 'text-gray-900 hover:bg-gray-100'
+              }`}
+              onClick={() => setMobileOpen(!mobileOpen)}
+            >
+              {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            </button>
+          </div>
         </div>
 
         {/* Mobile menu */}
@@ -94,7 +116,7 @@ export default function Layout({ children, currentPageName }) {
                   }`}
                   onClick={() => setMobileOpen(false)}
                 >
-                  {link.name}
+                  {t(`nav.${link.i18nKey}`)}
                 </Link>
               ))}
               <div className="flex gap-3 pt-4 border-t mt-4">

@@ -11,8 +11,17 @@ WORKDIR /app
 ENV NODE_ENV=development
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
+# Inline script avoids CRLF from Windows editors breaking shebang on Alpine ("no such file or directory").
+RUN printf '%s\n' \
+  '#!/bin/sh' \
+  'set -e' \
+  'cd /app' \
+  'npm install --no-audit --no-fund' \
+  'exec npm run dev -- --host 0.0.0.0 --port 5173' \
+  > /usr/local/bin/dev-entrypoint.sh \
+  && chmod +x /usr/local/bin/dev-entrypoint.sh
 EXPOSE 5173
-CMD ["npm","run","dev","--","--host","0.0.0.0","--port","5173"]
+ENTRYPOINT ["/usr/local/bin/dev-entrypoint.sh"]
 
 FROM node:20-alpine AS build
 WORKDIR /app

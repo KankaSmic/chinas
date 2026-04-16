@@ -1,11 +1,14 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Facebook, Instagram, MessageCircle } from "lucide-react";
 
 export default function SocialBar() {
+  const { t } = useTranslation();
+
   const links = [
-    { icon: Instagram, href: "https://www.instagram.com/misfloresmexicanas", label: "Instagram", color: "#E1306C" },
-    { icon: Facebook, href: "#", label: "Facebook", color: "#1877F2" },
-    { icon: MessageCircle, href: "https://wa.me/", label: "WhatsApp", color: "#25D366" },
+    { icon: Instagram, href: "https://www.instagram.com/misfloresmexicanas", labelKey: "social.instagram", color: "#E1306C" },
+    { icon: Facebook, href: "#", labelKey: "social.facebook", color: "#1877F2" },
+    { icon: MessageCircle, href: "https://wa.me/", labelKey: "social.whatsapp", color: "#25D366" },
   ];
 
   return (
@@ -18,7 +21,7 @@ export default function SocialBar() {
           rel="noopener noreferrer"
           className="w-12 h-12 rounded-full flex items-center justify-center text-white shadow-lg transition-all hover:scale-110 hover:shadow-xl"
           style={{ backgroundColor: link.color }}
-          aria-label={link.label}
+          aria-label={t(link.labelKey)}
         >
           <link.icon className="w-5 h-5" />
         </a>
