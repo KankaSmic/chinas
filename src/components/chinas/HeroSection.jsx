@@ -56,21 +56,21 @@ export default function HeroSection() {
           {t('hero.taglineEs')}
         </p>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <Link to={createPageUrl("Menu")}>
-            <Button size="lg" className="bg-[#FF6B6B] hover:bg-[#e85555] text-white rounded-full px-8 py-6 text-lg font-semibold shadow-xl shadow-red-500/25 transition-all hover:scale-105">
+        <div className="flex w-full flex-col items-stretch justify-center gap-4 sm:flex-row sm:items-center sm:justify-center">
+          <Link to={createPageUrl("Menu")} className="block w-full sm:w-auto">
+            <Button size="lg" className="w-full bg-[#FF6B6B] hover:bg-[#e85555] text-white rounded-full px-8 py-6 text-lg font-semibold shadow-xl shadow-red-500/25 transition-all hover:scale-105 sm:w-auto">
               <UtensilsCrossed className="w-5 h-5 mr-2" />
               {t('hero.viewMenu')}
             </Button>
           </Link>
-          <a href="https://wa.me/" target="_blank" rel="noopener noreferrer">
-            <Button size="lg" className="bg-[#25D366] hover:bg-[#1db954] text-white rounded-full px-8 py-6 text-lg font-semibold shadow-xl shadow-green-500/25 transition-all hover:scale-105">
+          <a href="https://wa.me/" target="_blank" rel="noopener noreferrer" className="block w-full sm:w-auto">
+            <Button size="lg" className="w-full bg-[#25D366] hover:bg-[#1db954] text-white rounded-full px-8 py-6 text-lg font-semibold shadow-xl shadow-green-500/25 transition-all hover:scale-105 sm:w-auto">
               <MessageCircle className="w-5 h-5 mr-2" />
               {t('hero.orderWhatsApp')}
             </Button>
           </a>
-          <Link to={createPageUrl("Location")}>
-            <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-gray-900 rounded-full px-8 py-6 text-lg font-semibold transition-all hover:scale-105 bg-white/10 backdrop-blur-sm">
+          <Link to={createPageUrl("Location")} className="block w-full sm:w-auto">
+            <Button size="lg" variant="outline" className="w-full border-2 border-white text-white hover:bg-white hover:text-gray-900 rounded-full px-8 py-6 text-lg font-semibold transition-all hover:scale-105 bg-white/10 backdrop-blur-sm sm:w-auto">
               <MapPin className="w-5 h-5 mr-2" />
               {t('hero.findUs')}
             </Button>

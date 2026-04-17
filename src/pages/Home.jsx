@@ -29,15 +29,15 @@ export default function Home() {
           <p className="text-gray-600 text-lg leading-relaxed max-w-2xl mx-auto mb-8">
             {t('home.aboutBody')}
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link to={createPageUrl("About")}>
-              <Button className="rounded-full px-6 bg-gray-900 hover:bg-gray-800">
+          <div className="flex w-full flex-col items-stretch justify-center gap-4 sm:flex-row sm:items-center sm:justify-center">
+            <Link to={createPageUrl("About")} className="block w-full sm:w-auto">
+              <Button className="w-full rounded-full px-6 bg-gray-900 hover:bg-gray-800 sm:w-auto">
                 <Users className="w-4 h-4 mr-2" />
                 {t('home.ourStory')}
               </Button>
             </Link>
-            <Link to={createPageUrl("Menu")}>
-              <Button variant="outline" className="rounded-full px-6 border-2">
+            <Link to={createPageUrl("Menu")} className="block w-full sm:w-auto">
+              <Button variant="outline" className="w-full rounded-full px-6 border-2 sm:w-auto">
                 <UtensilsCrossed className="w-4 h-4 mr-2" />
                 {t('home.exploreMenu')}
               </Button>
@@ -58,14 +58,14 @@ export default function Home() {
           <p className="text-gray-500 mb-8">
             {t('home.ctaBody')}
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a href="https://wa.me/" target="_blank" rel="noopener noreferrer">
-              <Button size="lg" className="bg-[#25D366] hover:bg-[#1db954] text-white rounded-full px-8 py-6 text-lg font-semibold">
+          <div className="flex w-full flex-col items-stretch justify-center gap-4 sm:flex-row sm:items-center sm:justify-center">
+            <a href="https://wa.me/" target="_blank" rel="noopener noreferrer" className="block w-full sm:w-auto">
+              <Button size="lg" className="w-full bg-[#25D366] hover:bg-[#1db954] text-white rounded-full px-8 py-6 text-lg font-semibold sm:w-auto">
                 {t('home.chatWhatsApp')}
               </Button>
             </a>
-            <Link to={createPageUrl("Location")}>
-              <Button size="lg" variant="outline" className="rounded-full px-8 py-6 text-lg font-semibold border-2">
+            <Link to={createPageUrl("Location")} className="block w-full sm:w-auto">
+              <Button size="lg" variant="outline" className="w-full rounded-full px-8 py-6 text-lg font-semibold border-2 sm:w-auto">
                 <MapPin className="w-5 h-5 mr-2" />
                 {t('home.getDirections')}
               </Button>
