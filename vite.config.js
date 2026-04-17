@@ -12,7 +12,8 @@ export default defineConfig({
       legacySDKImports: process.env.BASE44_LEGACY_SDK_IMPORTS === 'true',
       hmrNotifier: true,
       navigationNotifier: true,
-      analyticsTracker: true,
+      // Avoid /api/apps/null/analytics/track/batch when VITE_BASE44_APP_ID is unset (e.g. self-hosted prod)
+      analyticsTracker: false,
       visualEditAgent: true
     }),
     react(),
