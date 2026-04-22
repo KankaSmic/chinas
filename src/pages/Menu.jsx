@@ -7,20 +7,13 @@ import menuEs from "../locales/es/menu.json";
 
 const menusByLang = { en: menuEn, es: menuEs };
 
-/** Sticky tab `top` = offset below fixed site nav (nav is z-40; tabs stay z-30 so nav stays visible). */
-const STICKY_TOP_REM_MOBILE = 4;
-const STICKY_TOP_REM_DESKTOP = 5;
+/** Fallback before `#site-navbar` toolbar is measured (Layout `py-4` + row ≈ 4rem). */
+const NAV_TOOLBAR_FALLBACK_REM = 4;
 
-let safeAreaTopPxCache;
-function getSafeAreaTopPx() {
-  if (typeof window === 'undefined') return 0;
-  if (safeAreaTopPxCache != null) return safeAreaTopPxCache;
-  const el = document.createElement('div');
-  el.style.cssText = 'position:absolute;visibility:hidden;padding-top:env(safe-area-inset-top,0px)';
-  document.body.appendChild(el);
-  safeAreaTopPxCache = parseFloat(getComputedStyle(el).paddingTop) || 0;
-  el.remove();
-  return safeAreaTopPxCache;
+function getSiteNavToolbarHeightPx() {
+  const nav = document.getElementById('site-navbar');
+  const toolbar = nav?.firstElementChild;
+  return toolbar instanceof HTMLElement ? toolbar.offsetHeight : null;
 }
 
 const TAB_DEFS = [
@@ -35,8 +28,25 @@ export default function Menu() {
   const tabsStripRef = useRef(null);
   const tabBodyRef = useRef(null);
   const skipScrollReset = useRef(true);
+  const [navToolbarPx, setNavToolbarPx] = useState(null);
 
   const menuData = menusByLang[i18n.language] || menusByLang.en;
+
+  useLayoutEffect(() => {
+    const nav = document.getElementById('site-navbar');
+    const toolbar = nav?.firstElementChild;
+    if (!toolbar || !(toolbar instanceof HTMLElement)) return undefined;
+
+    const update = () => setNavToolbarPx(toolbar.offsetHeight);
+    update();
+    const ro = new ResizeObserver(update);
+    ro.observe(toolbar);
+    window.addEventListener('resize', update);
+    return () => {
+      ro.disconnect();
+      window.removeEventListener('resize', update);
+    };
+  }, []);
 
   useLayoutEffect(() => {
     if (skipScrollReset.current) {
@@ -48,9 +58,7 @@ export default function Menu() {
     if (!tabsEl || !bodyEl) return;
 
     const rem = parseFloat(getComputedStyle(document.documentElement).fontSize) || 16;
-    const isMdUp = window.matchMedia('(min-width: 768px)').matches;
-    const stickyRem = isMdUp ? STICKY_TOP_REM_DESKTOP : STICKY_TOP_REM_MOBILE;
-    const stickyTopPx = stickyRem * rem + getSafeAreaTopPx();
+    const stickyTopPx = getSiteNavToolbarHeightPx() ?? NAV_TOOLBAR_FALLBACK_REM * rem;
     const tabStripH = tabsEl.offsetHeight;
     const bodyTop = bodyEl.getBoundingClientRect().top + window.scrollY;
     const y = bodyTop - stickyTopPx - tabStripH;
@@ -91,15 +99,18 @@ export default function Menu() {
       {/* Opaque bg only: backdrop-blur + translucency repaint every scroll frame and jitter on mobile */}
       <div
         ref={tabsStripRef}
-        className="sticky top-[calc(4rem+env(safe-area-inset-top,0px))] z-30 border-b border-gray-200 bg-white shadow-sm md:top-[calc(5rem+env(safe-area-inset-top,0px))]"
+        className="sticky z-30 border-b border-gray-200 bg-white pt-0 shadow-sm md:pt-1"
+        style={{
+          top: navToolbarPx != null ? `${navToolbarPx}px` : `${NAV_TOOLBAR_FALLBACK_REM}rem`,
+        }}
       >
-        <div className="max-w-4xl mx-auto flex">
+        <div className="max-w-4xl mx-auto flex md:justify-center md:gap-1">
           {tabs.map((tab) => (
             <button
               key={tab.key}
               type="button"
               onClick={() => setActiveTab(tab.key)}
-              className={`flex-1 border-b-[3px] py-4 text-center text-sm font-bold transition-colors ${
+              className={`min-w-0 flex-1 border-b-[3px] py-4 text-center text-sm font-bold transition-colors md:flex-none md:px-5 md:py-3 ${
                 activeTab === tab.key
                   ? 'border-[#FF6B6B] text-gray-900'
                   : 'border-transparent text-gray-400 hover:text-gray-600'

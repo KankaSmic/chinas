@@ -60,7 +60,7 @@ export default function Contact() {
                     <s.icon className="w-6 h-6" />
                   </div>
                   <div>
-                    <p className="font-bold text-gray-900">{s.label}</p>
+                    <p className="font-bold text-gray-900"><a href={s.href} target="_blank" rel="noopener noreferrer">{s.label}</a></p>
                     <p className="text-sm text-gray-500">{t(s.descKey)}</p>
                   </div>
                 </a>

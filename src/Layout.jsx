@@ -39,7 +39,9 @@ export default function Layout({ children, currentPageName }) {
   return (
     <div className="min-h-screen flex flex-col">
       {/* Navbar */}
-      <nav className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
+      <nav
+        id="site-navbar"
+        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
         transparentNav ? 'bg-transparent' : 'bg-white shadow-sm'
       }`}
         style={transparentNav ? {} : { backdropFilter: 'blur(12px)' }}
@@ -79,7 +81,7 @@ export default function Layout({ children, currentPageName }) {
               }`}>
               <Instagram className="w-4 h-4" />
             </a>
-            <a href="#" target="_blank" rel="noopener noreferrer"
+            <a href="#nonexistent" target="_blank" rel="noopener noreferrer"
               className={`w-9 h-9 rounded-full flex items-center justify-center transition-colors ${
                 transparentNav ? 'text-white/80 hover:bg-white/10' : 'text-gray-400 hover:bg-gray-100'
               }`}>
@@ -124,7 +126,7 @@ export default function Layout({ children, currentPageName }) {
                   className="w-10 h-10 rounded-xl bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-gray-200">
                   <Instagram className="w-5 h-5" />
                 </a>
-                <a href="#" target="_blank" rel="noopener noreferrer"
+                <a href="#existente" target="_blank" rel="noopener noreferrer"
                   className="w-10 h-10 rounded-xl bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-gray-200">
                   <Facebook className="w-5 h-5" />
                 </a>
