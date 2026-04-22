@@ -9,19 +9,43 @@ export default function QuickInfo() {
     {
       icon: Clock,
       title: t('quickInfo.hoursTitle'),
-      lines: [t('quickInfo.hoursLine1'), t('quickInfo.hoursLine2'), t('quickInfo.hoursLine3')],
+      lines: [ {
+        text: t('quickInfo.hoursLine1'),
+        href: '#',
+      }, {
+        text: t('quickInfo.hoursLine2'),
+        href: '#',
+      }, {
+        text: t('quickInfo.hoursLine3'),
+        href: '#',
+      }],
       color: "#FF6B6B"
     },
     {
       icon: MapPin,
       title: t('quickInfo.locationTitle'),
-      lines: [t('quickInfo.locationLine1'), t('quickInfo.locationLine2')],
+      lines: [  {
+        text: t('quickInfo.contactLine1'),
+        href: '#',
+      }, {
+        text: t('quickInfo.locationLine2'),
+        href: '#',
+      }],
       color: "#00BCD4"
     },
     {
       icon: Phone,
       title: t('quickInfo.contactTitle'),
-      lines: [t('quickInfo.contactLine1'), t('quickInfo.contactLine2')],
+      lines: [
+        {
+          text: t('quickInfo.contactLine1'),
+          href: '#',
+        },
+       {
+          text: t('quickInfo.contactLine2'),
+          href: "https:/www.instagram.com/misfloresmexicanas"
+        }
+      ],
       color: "#FF9A56"
     }
   ];
@@ -39,7 +63,7 @@ export default function QuickInfo() {
             </div>
             <h3 className="text-lg font-bold text-gray-900 mb-2">{item.title}</h3>
             {item.lines.map((line, j) => (
-              <p key={j} className="text-gray-600 text-sm leading-relaxed">{line}</p>
+              <p key={j} className="text-gray-600 text-sm leading-relaxed">{line.href ? <a href={line.href} target="_blank" rel="noopener noreferrer">{line.text}</a> : line.text}</p>
             ))}
           </div>
         ))}
