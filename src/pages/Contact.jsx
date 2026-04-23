@@ -23,9 +23,9 @@ export default function Contact() {
   };
 
   const socials = [
-    { icon: MessageCircle, label: "WhatsApp", descKey: "contact.whatsappDesc", href: "https://wa.me/", color: "#25D366" },
+    { icon: MessageCircle, label: "WhatsApp", descKey: "contact.whatsappDesc", href: "https://wa.me/18295483860", color: "#25D366" },
     { icon: Instagram, label: "@misfloresmexicanas", descKey: "contact.instagramDesc", href: "https://www.instagram.com/misfloresmexicanas", color: "#E1306C" },
-    { icon: Facebook, label: "CHIÑAS Restaurante", descKey: "contact.facebookDesc", href: "#", color: "#1877F2" },
+    { icon: Facebook, label: "CHIÑAS Restaurante", descKey: "contact.facebookDesc", href: "https://www.facebook.com/profile.php?id=61577727732403", color: "#1877F2" },
   ];
 
   return (
